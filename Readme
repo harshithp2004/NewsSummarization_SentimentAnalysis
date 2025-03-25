@@ -1,0 +1,32 @@
+ ## News Summarization & Sentiment Analysis
+📌 Overview
+
+This project is a News Summarization & Sentiment Analysis tool built using Flask, Streamlit, and NLTK. It fetches the latest news articles for a given company, summarizes them, analyzes the sentiment, and provides a comparative sentiment distribution. It also supports Text-to-Speech (TTS) functionality in Hindi.
+
+🚀 Features
+
+Fetch Latest News: Scrapes Bing News for articles related to a given company.
+
+Summarization: Uses sumy library to generate a concise summary.
+
+Sentiment Analysis: Uses nltk's SentimentIntensityAnalyzer to classify news as Positive, Negative, or Neutral.
+
+Comparative Sentiment Analysis: Aggregates sentiment scores across multiple articles.
+
+Text-to-Speech (TTS): Converts summaries into Hindi audio.
+
+Streamlit UI: Provides an interactive web app for users.
+
+🛠️ Tech Stack
+
+Frontend: Streamlit
+
+Backend: Flask (REST API)
+
+Web Scraping: BeautifulSoup
+
+Summarization: sumy (LSA Summarizer)
+
+Sentiment Analysis: NLTK (VADER)
+
+Text-to-Speech: gTTS
