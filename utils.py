@@ -6,7 +6,7 @@ from sumy.summarizers.lsa import LsaSummarizer
 from nltk.sentiment import SentimentIntensityAnalyzer
 from gtts import gTTS
 
-# ✅ News Extraction (Improved for Bing News)
+#News Extraction (Improved for Bing News)
 def get_news(company_name):
     url = f"https://www.bing.com/news/search?q={company_name}"
     response = requests.get(url, headers={"User-Agent": "Mozilla/5.0"})
@@ -20,20 +20,20 @@ def get_news(company_name):
 
     return articles
 
-# ✅ Summarization
+#Summarization
 def summarize_text(text):
     parser = PlaintextParser.from_string(text, Tokenizer("english"))
     summarizer = LsaSummarizer()
     summary = summarizer(parser.document, 2)  # Extract 2 key sentences
     return " ".join(str(sentence) for sentence in summary)
 
-# ✅ Sentiment Analysis
+#Sentiment Analysis
 def analyze_sentiment(text):
     sia = SentimentIntensityAnalyzer()
     score = sia.polarity_scores(text)
     return "Positive" if score["compound"] > 0 else "Negative" if score["compound"] < 0 else "Neutral"
 
-# ✅ Comparative Sentiment Analysis
+#Comparative Sentiment Analysis
 def comparative_analysis(articles):
     sentiment_counts = {"Positive": 0, "Negative": 0, "Neutral": 0}
     for article in articles:
@@ -42,7 +42,7 @@ def comparative_analysis(articles):
 
     return sentiment_counts
 
-# ✅ Text-to-Speech (TTS)
+# Text-to-Speech (TTS)
 def text_to_speech(text, filename="output.mp3"):
     tts = gTTS(text, lang='hi')
     tts.save(filename)

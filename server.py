@@ -22,7 +22,7 @@ def fetch_news():
     if not articles:
         return jsonify({"error": "No news articles found"}), 404
 
-    return jsonify({"articles": articles}), 200  # ✅ Always return 200 OK
+    return jsonify({"articles": articles}), 200
 
 
 @app.route("/sentiment", methods=["GET"])
@@ -48,7 +48,7 @@ def fetch_sentiment():
     if not summaries:
         return jsonify({"error": "No summaries generated"}), 500
 
-    # 🔥 Apply `analyze_sentiment` to each summary
+    #Apply `analyze_sentiment` to each summary
     sentiment_results = [
         {"title": s["title"], "sentiment": analyze_sentiment(s["summary"])}
         for s in summaries
@@ -56,7 +56,7 @@ def fetch_sentiment():
 
     print(f"Individual Sentiment Analysis: {sentiment_results}")  # Debugging log
 
-    # 🔥 Perform comparative analysis on all summaries
+    #Perform comparative analysis on all summaries
     sentiments = comparative_analysis(summaries)
 
     print(f"Overall Sentiment Distribution: {sentiments}")  # Debugging log
@@ -66,7 +66,7 @@ def fetch_sentiment():
         "overall_sentiments": sentiments,
     }
 
-    return jsonify(response_data), 200  # ✅ Always return 200 OK
+    return jsonify(response_data), 200
 
 
 @app.route("/tts", methods=["GET"])
@@ -78,7 +78,7 @@ def generate_tts():
     summary_text = f"{company} has been analyzed. The sentiment is available."
     filename = text_to_speech(summary_text)
 
-    return jsonify({"audio_file": filename}), 200  # ✅ Always return 200 OK
+    return jsonify({"audio_file": filename}), 200
 
 
 if __name__ == "__main__":

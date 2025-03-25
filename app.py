@@ -1,9 +1,9 @@
 import streamlit as st
 import requests
 
-BASE_URL = "http://127.0.0.1:5000"  # Flask server
+BASE_URL = "http://127.0.0.1:5000"
 
-st.title("📰 News Summarization & Sentiment Analysis")
+st.title("News Summarization & Sentiment Analysis")
 
 company_name = st.text_input("Enter a company name:")
 if st.button("Analyze"):
@@ -15,7 +15,7 @@ if st.button("Analyze"):
         if news_response.status_code == 200:
             articles = news_response.json().get("articles", [])
             if articles:
-                st.write("### 📌 Summarized News")
+                st.write("###Summarized News")
                 for article in articles:
                     title = article.get("title", "No title available")
                     link = article.get("link", "#")
@@ -28,7 +28,7 @@ if st.button("Analyze"):
         # Fetch sentiment analysis
         sentiment_response = requests.get(f"{BASE_URL}/sentiment", params={"company": company_name})
 
-        # Debugging: Print raw response
+
         st.write("Raw Sentiment Response:", sentiment_response.text)
 
         if sentiment_response.status_code == 200:
@@ -39,12 +39,12 @@ if st.button("Analyze"):
 
                 # Display Individual Sentiments
                 if individual_sentiments:
-                    st.write("### 📊 Individual Sentiment Analysis")
+                    st.write("###Individual Sentiment Analysis")
                     st.json(individual_sentiments)
 
                 # Display Overall Sentiments
                 if overall_sentiments:
-                    st.write("### 📊 Overall Sentiment Distribution")
+                    st.write("###Overall Sentiment Distribution")
                     st.json(overall_sentiments)
                 else:
                     st.warning("No overall sentiment analysis available.")
@@ -59,7 +59,7 @@ if st.button("Analyze"):
         if summary_text:
             tts_response = requests.get(f"{BASE_URL}/tts", params={"company": company_name})
             if tts_response.status_code == 200:
-                st.write("### 🎙️ Hindi Audio Summary")
+                st.write("###Audio Summary")
                 st.audio("output.mp3")
             else:
                 st.error(f"Failed to generate TTS: {tts_response.json().get('error', 'Unknown error')}")
